@@ -12,7 +12,7 @@ int main()
 
     for (auto i : myVect)
     {
-        cout << " " << i <<" , ";
+        cout << " " << i <<"  ";
     }
     std::cout <<endl;
 }
