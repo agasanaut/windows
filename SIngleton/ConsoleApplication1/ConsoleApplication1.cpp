@@ -24,7 +24,7 @@ Singleton* Singleton::obj = nullptr;
 int main()
 {
     Singleton::getInstance();
-    std::cout << "Singleton obj created \n";
+    std::cout << "Singleton obj created !!!\n";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
