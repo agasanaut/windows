@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap mp genTemplate">
 
   <Identity
-    Name="0F4A3D04-46E6-4DD2-9EBE-FC2D846835BB"
-    Publisher="CN=tejus"
-    Version="1.0.0.0" />
+    Name="29800TejusInc.KOO"
+    Publisher="CN=628E1B84-5D52-425F-B854-2DCC65C2AB6B"
+    Version="1.0.7.0" />
 
-  <mp:PhoneIdentity PhoneProductId="0F4A3D04-46E6-4DD2-9EBE-FC2D846835BB" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="9d3697fd-6834-4b99-bd06-bbfe6e3588a8" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Koo</DisplayName>
-    <PublisherDisplayName>tejus</PublisherDisplayName>
+    <DisplayName>KOO</DisplayName>
+    <PublisherDisplayName>Tejus Inc</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
