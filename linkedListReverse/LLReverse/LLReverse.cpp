@@ -62,12 +62,12 @@ int main()
 	ll.push(15);
 	ll.push(85);
 
-	cout << "Given linked list\n";
+	cout << "Given linked list  : \n";
 	ll.print();
 
 	ll.reverse();
 
-	cout << "\nReversed Linked list \n";
+	cout << "\nReversed Linked list :  \n";
 	ll.print();
 	return 0;
 }
