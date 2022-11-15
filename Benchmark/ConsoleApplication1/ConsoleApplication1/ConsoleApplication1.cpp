@@ -13,7 +13,7 @@ void myFunc()
     InstrumentationTimer timer("myFunc");   // Place code like this in scopes you'd like to include in profiling
     // Code
 
-    Sleep(2000);
+    Sleep(200);
 }
 
 
@@ -23,23 +23,32 @@ void myFunc1()
 
     // Code
 
-    Sleep(1000);
+    Sleep(100);
 }
 
-int main()
+void scan()
 {
-   Instrumentor::Get().BeginSession("Session Name");        // Begin session 
- {
-
-    std::thread t1 ( myFunc);
+    std::thread t1(myFunc);
     std::thread t2(myFunc1);
 
     t1.join();
     t2.join();
- }
- Instrumentor::Get().EndSession();   
+}
 
-    std::cout << "Hello World!\n";
+int main()
+{
+    cout << "start" << endl;
+   Instrumentor::Get().BeginSession("Session Name");        // Begin session 
+
+   //code
+       scan();
+       scan();
+       scan();
+       scan();
+   
+  Instrumentor::Get().EndSession();   
+
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
