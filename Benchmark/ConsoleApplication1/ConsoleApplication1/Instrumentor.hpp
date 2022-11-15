@@ -1,11 +1,13 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <chrono>
 #include <algorithm>
 #include <fstream>
 #include <thread>
 #include <iostream>
+
 
 struct ProfileResult
 {
@@ -16,13 +18,16 @@ struct ProfileResult
 
 struct InstrumentationSession
 {
+	InstrumentationSession(std::string name):Name(name)
+	{
+	}
 	std::string Name;
 };
 
 class Instrumentor
 {
 private:
-	InstrumentationSession* m_CurrentSession;
+	std::unique_ptr<InstrumentationSession> m_CurrentSession;
 	std::ofstream m_OutputStream;
 	int m_ProfileCount;
 	int pid;
@@ -36,15 +41,13 @@ public:
 	{
 		m_OutputStream.open(filepath);
 		WriteHeader();
-		m_CurrentSession = new InstrumentationSession{ name };
+		m_CurrentSession = std::unique_ptr<InstrumentationSession>(new InstrumentationSession(name)); 
 	}
 
 	void EndSession()
 	{
 		WriteFooter();
 		m_OutputStream.close();
-		delete m_CurrentSession;
-		m_CurrentSession = nullptr;
 		m_ProfileCount = 0;
 	}
 

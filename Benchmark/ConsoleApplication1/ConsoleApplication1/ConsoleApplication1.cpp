@@ -4,7 +4,7 @@
 #include <iostream>
 #include <thread>
 #include <windows.h>
-#include "Instrumentor.h"
+#include "Instrumentor.hpp"
 
 using namespace std;
 
