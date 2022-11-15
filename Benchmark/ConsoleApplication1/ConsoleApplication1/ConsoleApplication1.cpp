@@ -4,7 +4,7 @@
 #include <iostream>
 #include <thread>
 #include <windows.h>
-#include "C:\Users\tejus\OneDrive\Desktop\Instrumentor.h"
+#include "Instrumentor.h"
 
 using namespace std;
 
