@@ -3,8 +3,11 @@
 #include<iostream>
 #include <msclr\marshal_cppstd.h>
 #include <windows.h> // ShellExecute()
+#include <chrono>
+#include <thread>
 
 using namespace std;
+
 
 namespace Project1 {
 
@@ -30,6 +33,10 @@ namespace Project1 {
 			//
 		}
 
+		void print1()
+		{
+
+		}
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -50,13 +57,18 @@ namespace Project1 {
 	private: System::Windows::Forms::ProgressBar^ progressBar2;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::Timer^ timer2;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::ComponentModel::IContainer^ components;
 	protected:
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -65,6 +77,7 @@ namespace Project1 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -74,6 +87,10 @@ namespace Project1 {
 			this->progressBar2 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -94,13 +111,13 @@ namespace Project1 {
 				static_cast<System::Byte>(0)));
 			this->textBox1->Location = System::Drawing::Point(193, 41);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(773, 18);
+			this->textBox1->Size = System::Drawing::Size(608, 18);
 			this->textBox1->TabIndex = 1;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(972, 40);
+			this->button1->Location = System::Drawing::Point(807, 40);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(29, 23);
 			this->button1->TabIndex = 2;
@@ -126,14 +143,14 @@ namespace Project1 {
 			// 
 			// progressBar1
 			// 
-			this->progressBar1->Location = System::Drawing::Point(217, 188);
+			this->progressBar1->Location = System::Drawing::Point(97, 188);
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(100, 23);
 			this->progressBar1->TabIndex = 4;
 			// 
 			// progressBar2
 			// 
-			this->progressBar2->Location = System::Drawing::Point(217, 225);
+			this->progressBar2->Location = System::Drawing::Point(97, 229);
 			this->progressBar2->Name = L"progressBar2";
 			this->progressBar2->Size = System::Drawing::Size(100, 23);
 			this->progressBar2->TabIndex = 5;
@@ -143,7 +160,7 @@ namespace Project1 {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(146, 188);
+			this->label2->Location = System::Drawing::Point(55, 188);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(36, 20);
 			this->label2->TabIndex = 6;
@@ -155,17 +172,54 @@ namespace Project1 {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(146, 225);
+			this->label3->Location = System::Drawing::Point(55, 229);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(35, 20);
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"SPL";
+			this->label3->Click += gcnew System::EventHandler(this, &MyForm::label3_Click);
+			// 
+			// timer1
+			// 
+			this->timer1->Interval = 1000;
+			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
+			// 
+			// timer2
+			// 
+			this->timer2->Interval = 1000;
+			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::timer2_Tick);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(203, 196);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(42, 15);
+			this->label4->TabIndex = 8;
+			this->label4->Text = L"Not run";
+			this->label4->Click += gcnew System::EventHandler(this, &MyForm::label4_Click);
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(203, 237);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(42, 15);
+			this->label5->TabIndex = 9;
+			this->label5->Text = L"Not run";
+			this->label5->Click += gcnew System::EventHandler(this, &MyForm::label5_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(10, 14);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1924, 623);
+			this->ClientSize = System::Drawing::Size(848, 623);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->progressBar2);
@@ -205,10 +259,55 @@ namespace Project1 {
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	progressBar1->Value = 10;
-	progressBar2->Value = 50;
+	progressBar1->Value = 4;
+	label4->Text = "Running";
 
-/	ShellExecute(NULL,TEXT("open"),TEXT("http://www.google.com"),NULL,NULL,	SW_SHOWNORMAL);
+	progressBar2->Value = 4;
+	label5->Text = "Running";
+
+	this->timer1->Start();
+
+}
+
+private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+	this->timer1->Stop();
+
+	std::cout << "------------Start Model Test-------------" << std::endl;
+
+
+	//Model1
+
+	std::cout << "Running Model1 Test==>" << std::endl;
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+	system("C:\\Users\\tejus\\Source\\Repos\\agasanaut\\windows\\Benchmark\\ConsoleApplication1\\x64\\Release\\ConsoleApplication1.exe -c 45");
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+	std::cout << "Model1 Test Done." << std::endl;
+	progressBar1->Value = 100;
+	label4->Text = "Ran for " + std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count().ToString() + " us";;
+	std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[ us ]" << std::endl;
+
+	//Model2
+
+	std::cout << "Running Model2 Test==>" << std::endl;
+	begin = std::chrono::steady_clock::now();
+	system("C:\\Users\\tejus\\Source\\Repos\\agasanaut\\windows\\Benchmark\\ConsoleApplication1\\x64\\Release\\ConsoleApplication1.exe -c 45");
+	end = std::chrono::steady_clock::now();
+	std::cout << "Model1 Test Done." << std::endl;
+	progressBar2->Value = 100;
+	label5->Text = "Ran for " + std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count().ToString() + " us";
+	std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[ us ]" << std::endl;
+}
+
+
+private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e) {
+
+}
+
+private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

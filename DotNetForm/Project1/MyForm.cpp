@@ -11,10 +11,10 @@ STAThreadAttribute;
 [STAThread]
 void main() {
     
-    std::cout << "Start....";
-
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
     Application::Run(gcnew MyForm());
+
+
 }
 

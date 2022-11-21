@@ -13,7 +13,7 @@ void myFunc()
     InstrumentationTimer timer("myFunc");   // Place code like this in scopes you'd like to include in profiling
     // Code
 
-    Sleep(200);
+    Sleep(2000);
 }
 
 
@@ -23,7 +23,7 @@ void myFunc1()
 
     // Code
 
-    Sleep(100);
+    Sleep(1000);
 }
 
 void scan()
