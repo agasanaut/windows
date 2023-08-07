@@ -2,10 +2,46 @@
 //
 
 #include <iostream>
+#include <thread>
+#include <mutex>
+#include <windows.h>
+#include <condition_variable>
+using namespace std;
+bool produced = false;
+mutex m;
+std::condition_variable cv;
+
+void producer()
+{
+    cout << "produced" << std::endl;
+    produced = true;
+    cv.notify_one();
+}
+
+void consumer()
+{
+    std::unique_lock<std::mutex> ul(m);
+
+    while (produced == false)
+    {
+        cv.wait(ul);
+    }
+
+    cout << "consumed" << std::endl;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    thread t2(consumer);
+    Sleep(1000);
+    thread t1(producer);
+
+
+
+    if (t1.joinable())t1.join();
+    if (t2.joinable())t2.join();
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
