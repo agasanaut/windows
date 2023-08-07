@@ -2,10 +2,41 @@
 //
 
 #include <iostream>
+using namespace std;
+
+template < typename T >
+class SmartPtr
+{
+    T* ptr;
+
+public:
+    explicit SmartPtr(T* p = nullptr):
+        ptr(p)
+    {
+    }
+
+    ~SmartPtr()
+    {
+        if (ptr)
+        {
+            delete ptr;
+            ptr = nullptr;
+        }
+    }
+
+    T& operator *()
+    {
+        return *ptr;
+    }
+
+};
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    SmartPtr<int> iPtr(new int(5));
+    *iPtr = 6;
+    cout << *iPtr;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
