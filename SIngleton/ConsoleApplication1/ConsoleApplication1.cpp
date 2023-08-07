@@ -7,6 +7,8 @@ class Singleton
 private:
 	static Singleton* obj;
 	Singleton() {}
+	Singleton(const Singleton&) = delete;
+	Singleton& operator = (const Singleton&) = delete;
 	static mutex m;
 public:
 	static Singleton* getInstance()
