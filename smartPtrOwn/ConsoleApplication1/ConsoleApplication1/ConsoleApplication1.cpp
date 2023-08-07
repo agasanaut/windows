@@ -7,20 +7,40 @@ using namespace std;
 template < typename T >
 class SmartPtr
 {
-    T* ptr;
-
+    T* ptr = nullptr;
+    int* count = nullptr;
 public:
-    explicit SmartPtr(T* p = nullptr):
+    explicit SmartPtr(T* p ):
         ptr(p)
     {
+        if (!count)
+        {
+            count = new int(0);
+        }
+    }
+
+    SmartPtr(const SmartPtr& obj)
+    {
+        ptr = obj.ptr;
+        count = obj.count;
+        ++(*count);
     }
 
     ~SmartPtr()
     {
-        if (ptr)
+        if (count)
         {
-            delete ptr;
-            ptr = nullptr;
+            if (--(*count) == 0)
+            {
+                delete count;
+                count = nullptr;
+
+                if (ptr)
+                {
+                    delete ptr;
+                    ptr = nullptr;
+                }
+            }
         }
     }
 
@@ -28,6 +48,25 @@ public:
     {
         return *ptr;
     }
+
+    T& operator =(const T& obj)
+    {
+        if (&obj == this)
+        {
+            return *this;
+        }
+
+        if (ptr)
+        {
+            delete ptr;
+            ptr = obj.ptr;
+            count = obj.count;
+            ++(*count);
+        }
+
+        return *ptr;
+    }
+
 
 };
 
@@ -37,6 +76,13 @@ int main()
     SmartPtr<int> iPtr(new int(5));
     *iPtr = 6;
     cout << *iPtr;
+
+    SmartPtr<int> iPtr2(iPtr);
+    cout << *iPtr2;
+
+    SmartPtr<int> iPtr3(new int(6));
+    iPtr3 = iPtr2;
+    cout << *iPtr3;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
