@@ -1,6 +1,5 @@
 #include <iostream>
 #include <mutex>
-
 using namespace std;
 
 class Singleton
