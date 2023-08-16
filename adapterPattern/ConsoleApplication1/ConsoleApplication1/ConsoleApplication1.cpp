@@ -16,26 +16,28 @@ public :
 class newInterface
 {
     OldClass oc;
+
 protected:
+public :
+    virtual void doSomethingNew() = 0;
+
+};
+
+class Adpter : public newInterface
+{
+
+    OldClass oc;
+public:
     void doSomethingNew()
     {
         oc.doSomething();
     }
 };
 
-class newClass : public newInterface
-{
-public:
-    void doSomething()
-    {
-        doSomethingNew();
-    }
-};
-
 int main()
 {
-    newClass nc;
-    nc.doSomething();
+    Adpter nc;
+    nc.doSomethingNew();
 
     std::cout << "Hello World!\n";
 }
