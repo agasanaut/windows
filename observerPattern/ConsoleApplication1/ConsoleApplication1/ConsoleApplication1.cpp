@@ -59,7 +59,6 @@ public:
 
 int main()
 {
-
 	Subject sb;
 	Observer1 ob1;
 	Observer2 ob2;
