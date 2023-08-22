@@ -9,6 +9,7 @@ private:
 	Singleton() {}
 	Singleton(const Singleton&) = delete;
 	Singleton& operator = (const Singleton&) = delete;
+	~Singleton() {};
 	static mutex m;
 public:
 	static Singleton* getInstance()
