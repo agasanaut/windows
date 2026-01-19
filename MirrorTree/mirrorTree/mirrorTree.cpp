@@ -13,8 +13,6 @@ struct Node
 	struct Node* right;
 };
 
-/* Helper function that allocates a new node with
-the given data and NULL left and right pointers. */
 struct Node* newNode(int data)
 {
 	struct Node* node = (struct Node*)
@@ -53,8 +51,7 @@ void mirror(struct Node* node)
 	mirror(node->right);
 }
 
-/* Helper function to print
-Inorder traversal.*/
+
 void inOrder(struct Node* node)
 {
 	if (node == NULL)
